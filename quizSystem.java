@@ -80,6 +80,7 @@ class quiz{
 			System.out.print("\nYou can edit...");
 			System.out.print("\nEnter your question to replace: ");
 			Question = sc.nextLine();
+			Question = sc.nextLine();
 			question.set(index, Question);
 			//Need to find the location of the index
 			int answerIndex = 0;
@@ -87,16 +88,7 @@ class quiz{
 			i = 0;
 			j = 0;
 			while(i < numberOfAnswer.size()){
-				if(j < numberOfAnswer.get(i) && i < index){
-					answerIndex++;
-					j++;
-				}
-				i++;
-			}
-			i = 0;
-			j = 0;
-			while(i < numberOfAnswer.size()){
-				if(j < numberOfAnswer.get(i) && i < index){
+				if(j < numberOfAnswer.get(i) && (i < index)){
 					answerIndex++;
 					j++;
 				}
@@ -105,7 +97,7 @@ class quiz{
 			i = 0;
 			j = 0;
 			while(i < numberOfCorrectAnswer.size()){
-				if(j < numberOfCorrectAnswer.get(i) && (i < index)){
+				if(j < numberOfCorrectAnswer.get(i) && (i < index) ){
 					correctAnswerIndex++;
 					j++;
 				}
@@ -114,11 +106,11 @@ class quiz{
 			//Display the correct index
 			i = 0;
 			j = 0;
-			while(i <= numberOfCorrectAnswer.get(correctAnswerIndex)){
+			while(i < numberOfCorrectAnswer.get(correctAnswerIndex)){
 				System.out.printf("\nIndex of correct answer is %d",indexOfCorrectAnswer.get(correctAnswerIndex + i));
 				i++;
 			}
-			while(j <= numberOfAnswer.get(answerIndex)){
+			while(j < numberOfAnswer.get(answerIndex)){
 				System.out.print("\nEnter your answer to replace: ");
 				Answer = sc.nextLine();
 				answer.set(answerIndex + j ,Answer);
@@ -154,16 +146,7 @@ class quiz{
 			i = 0;
 			j = 0;
 			while(i < numberOfAnswer.size()){
-				if(j < numberOfAnswer.get(i) && i < index){
-					answerIndex++;
-					j++;
-				}
-				i++;
-			}
-			i = 0;
-			j = 0;
-			while(i < numberOfAnswer.size()){
-				if(j < numberOfAnswer.get(i) && i < index){
+				if(j < numberOfAnswer.get(i) && ((i < index) || (i==0))){
 					answerIndex++;
 					j++;
 				}
@@ -172,7 +155,7 @@ class quiz{
 			i = 0;
 			j = 0;
 			while(i < numberOfCorrectAnswer.size()){
-				if(j < numberOfCorrectAnswer.get(i) && (i < index)){
+				if(j < numberOfCorrectAnswer.get(i) && ((i < index) || (i==0))){
 					correctAnswerIndex++;
 					j++;
 				}
@@ -181,13 +164,13 @@ class quiz{
 			//Display the correct index
 			i = 0;
 			j = 0;
-			while(i <= numberOfCorrectAnswer.get(correctAnswerIndex)){
-				indexOfCorrectAnswer.remove(correctAnswerIndex + i);
-				i++;
-			}
-			while(j <= numberOfAnswer.get(answerIndex)){
+			while(j < numberOfAnswer.get(answerIndex)){
 				answer.remove(answerIndex + j);
 				j++;
+			}
+			while(i < numberOfCorrectAnswer.get(correctAnswerIndex)){
+				indexOfCorrectAnswer.remove(correctAnswerIndex + i);
+				i++;
 			}
 			numberOfAnswer.remove(index);
 			score.remove(index);
